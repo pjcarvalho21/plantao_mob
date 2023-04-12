@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'components/plantao_list.dart';
+import 'components/plantonista.dart';
+import 'model/plantao.dart';
 
 main() => runApp(PlantaoApp());
 
@@ -43,22 +46,42 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  //final List<Plantao> _plantoes = [];
+
+  final _plantoes = [
+    Plantao(
+      id: 1,
+      data: DateTime.now().add(const Duration(days: 5)),
+      local: "DAP",
+      plantonista: 'Paulo J. Carvalho',
+      tipoPlantonista: 'Servidor DAP',
+      status: 'R',
+    ),
+    Plantao(
+      id: 2,
+      data: DateTime.now(),
+      local: "DAP",
+      plantonista: 'Paulo J. Carvalho',
+      tipoPlantonista: 'Servidor DAP',
+      status: 'P',
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Meus Plantões'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.add),
-            onPressed: () {},
-          ),
-        ],
       ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [],
+          children: [
+            Plantonista(
+                plantonista: _plantoes[0].plantonista,
+                local: _plantoes[0].local),
+            PlantaoList(plantoes: _plantoes),
+          ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
