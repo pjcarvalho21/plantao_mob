@@ -9,7 +9,7 @@ class PlantaoList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 430,
+      height: 600,
       child: plantoes.isEmpty
           ? Column()
           : ListView.builder(
@@ -24,15 +24,15 @@ class PlantaoList extends StatelessWidget {
                   ),
                   child: ListTile(
                     leading: CircleAvatar(
-                      backgroundColor: tr.status == 'R'
-                          ? Color.fromARGB(255, 235, 2, 52)
-                          : const Color.fromARGB(255, 14, 97, 165),
+                      backgroundColor: tr.data.isAfter(DateTime.now())
+                          ? Color.fromARGB(255, 177, 177, 177)
+                          : Color.fromARGB(255, 3, 3, 3),
                       radius: 30,
                       child: Padding(
                         padding: const EdgeInsets.all(6),
                         child: FittedBox(
                           child: Text(
-                            '${tr.status}',
+                            tr.data.isAfter(DateTime.now()) ? 'PRV' : 'RLZ',
                             style: const TextStyle(
                               color: Colors.white,
                             ),
@@ -41,10 +41,10 @@ class PlantaoList extends StatelessWidget {
                       ),
                     ),
                     title: Text(
-                      DateFormat('d MMM y').format(tr.data),
+                      DateFormat("d 'de' MMMM 'de' y", "pt_BR").format(tr.data),
                       style: Theme.of(context).textTheme.headline6,
                     ),
-                    subtitle: const Text('Domingo'),
+                    subtitle: Text(DateFormat("EEEE", "pt_BR").format(tr.data)),
                   ),
                 );
               }),
