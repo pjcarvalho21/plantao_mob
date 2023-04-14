@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:plantao_mob/screen/plantao_off_list_screen.dart';
 
 class Plantonista extends StatelessWidget {
   final String plantonista;
@@ -6,6 +7,15 @@ class Plantonista extends StatelessWidget {
 
   const Plantonista(
       {super.key, required this.plantonista, required this.local});
+
+      void _selectListPlantaoOff(BuildContext context){
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (_){
+             return const PlantaoOffListScreen();
+          }),
+          );
+      }
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +49,7 @@ class Plantonista extends StatelessWidget {
                         color: Color.fromARGB(255, 70, 68, 68),
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: ()=>_selectListPlantaoOff(context),
                   )
                 ],
               ),
