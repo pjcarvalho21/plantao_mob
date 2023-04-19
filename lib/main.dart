@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'components/plantao_list.dart';
+import 'package:plantao_mob/screen/plantao_realizado_screen.dart';
+import 'components/plantao_list_previstos.dart';
 import 'components/plantonista.dart';
 import 'model/plantao.dart';
 
@@ -43,6 +44,7 @@ class PlantaoApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate
       ],
       supportedLocales: const [Locale('pt', 'BR')],
+      routes: {'/plantao-lista': (context) => const PlantaoRealizadoScreen()},
     );
   }
 }
@@ -119,9 +121,10 @@ class _MyHomePageState extends State<MyHomePage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Plantonista(
-                plantonista: _plantoes[0].plantonista,
-                local: _plantoes[0].local),
-            PlantaoList(plantoes: _plantoes),
+              plantoes: _plantoes,
+              tipoLista: "ver realizados",
+            ),
+            PlantaoListPrevistos(plantoes: _plantoes),
           ],
         ),
       ),

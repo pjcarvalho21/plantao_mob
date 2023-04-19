@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import '../model/plantao.dart';
 import 'package:intl/intl.dart';
 
-class PlantaoList extends StatelessWidget {
+class PlantaoListPrevistos extends StatelessWidget {
   final List<Plantao> plantoes;
 
-  const PlantaoList({super.key, required this.plantoes});
+  const PlantaoListPrevistos({super.key, required this.plantoes});
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class PlantaoList extends StatelessWidget {
                   ),
                   child: ListTile(
                     leading: const CircleAvatar(
-                      backgroundColor: Color.fromARGB(255, 177, 177, 177),
+                      backgroundColor: Color.fromARGB(255, 41, 51, 104),
                       radius: 30,
                       child: Padding(
                         padding: EdgeInsets.all(6),

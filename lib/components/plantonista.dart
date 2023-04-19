@@ -1,21 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:plantao_mob/screen/plantao_off_list_screen.dart';
+import '../model/plantao.dart';
 
 class Plantonista extends StatelessWidget {
-  final String plantonista;
-  final String local;
+  List<Plantao> plantoes = [];
+  String tipoLista = "";
+  Plantonista({super.key, required this.plantoes, required this.tipoLista});
 
-  const Plantonista(
-      {super.key, required this.plantonista, required this.local});
-
-      void _selectListPlantaoOff(BuildContext context){
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (_){
-             return const PlantaoOffListScreen();
-          }),
-          );
-      }
+  void _selectListPlantaoOff(BuildContext context) {
+    Navigator.of(context).pushNamed(
+      '/plantao-lista',
+      arguments: plantoes,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,10 +27,10 @@ class Plantonista extends StatelessWidget {
           children: [
             ListTile(
               title: Text(
-                plantonista,
+                plantoes[0].plantonista,
                 style: Theme.of(context).textTheme.headline6,
               ),
-              subtitle: Text("Local: " + local),
+              subtitle: Text("Local: ${plantoes[0].local}"),
             ),
             SizedBox(
               height: 29,
@@ -42,14 +38,14 @@ class Plantonista extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: <Widget>[
                   TextButton(
-                    child: const Text(
-                      'Realizados',
-                      style: TextStyle(
+                    child: Text(
+                      tipoLista,
+                      style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Color.fromARGB(255, 70, 68, 68),
                       ),
                     ),
-                    onPressed: ()=>_selectListPlantaoOff(context),
+                    onPressed: () => _selectListPlantaoOff(context),
                   )
                 ],
               ),
