@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import '../components/plantao_list_realizados.dart';
-import '../components/plantonista.dart';
 import '../model/plantao.dart';
 
+// ignore: must_be_immutable
 class PlantaoRealizadoScreen extends StatelessWidget {
-  const PlantaoRealizadoScreen({super.key});
+    List<Plantao> plantoes = [];
+    PlantaoRealizadoScreen({super.key, required this.plantoes});
+ 
 
   List<Plantao> _selectPlantoesRealizados(BuildContext context) {
-    final List<Plantao> plantoes =
-        ModalRoute.of(context)!.settings.arguments as List<Plantao>;
+   
 
     List<Plantao> plantoesRealizados = [];
     plantoesRealizados.addAll(plantoes);
@@ -20,20 +21,15 @@ class PlantaoRealizadoScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Meus Plantões'),
-      ),
-      body: SingleChildScrollView(
+    return  SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Plantonista(
-                plantoes: _selectPlantoesRealizados(context), tipoLista: ""),
+           
             PlantaoListRealizados(plantoes: _selectPlantoesRealizados(context)),
           ],
         ),
-      ),
-    );
+      );
+    
   }
 }
