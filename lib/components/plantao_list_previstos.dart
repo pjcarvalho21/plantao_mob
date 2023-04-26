@@ -15,7 +15,7 @@ class PlantaoListPrevistos extends StatelessWidget {
     });
 
     return SizedBox(
-      height: 600,
+      height: 750,
       child: plantoesPrevistos.isEmpty
           ? Column()
           : ListView.builder(
@@ -29,16 +29,30 @@ class PlantaoListPrevistos extends StatelessWidget {
                     horizontal: 5,
                   ),
                   child: ListTile(
-                    leading: const CircleAvatar(
-                      backgroundColor: Color.fromARGB(255, 41, 51, 104),
-                      radius: 30,
-                      child: Padding(
-                        padding: EdgeInsets.all(6),
-                        child: FittedBox(
-                          child: Text(
-                            'PRV',
-                            style: TextStyle(
-                              color: Colors.white,
+                    leading: PhysicalModel(
+                      color: Colors.black,
+                      elevation: 12.0,
+                      shape: BoxShape.circle,
+                      child: CircleAvatar(
+                        backgroundColor:
+                            const Color.fromARGB(255, 71, 134, 185),
+                        radius: 25,
+                        child: CircleAvatar(
+                          radius: 22,
+                          backgroundColor:
+                              const Color.fromARGB(255, 10, 60, 100),
+                          child: Padding(
+                            padding: const EdgeInsets.all(6),
+                            child: FittedBox(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: const [
+                                  Icon(
+                                    Icons.alarm_add,
+                                    color: Colors.white,
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                         ),

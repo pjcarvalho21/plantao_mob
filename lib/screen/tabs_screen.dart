@@ -41,6 +41,90 @@ class TabsScreen extends StatelessWidget {
         id: 2,
         data: DateTime.now().add(const Duration(days: 1)),
       ),
+      Plantao(
+        id: 2,
+        data: DateTime.now().add(const Duration(days: 2)),
+      ),
+      Plantao(
+        id: 2,
+        data: DateTime.now().add(const Duration(days: -15)),
+      ),
+      Plantao(
+        id: 2,
+        data: DateTime.now().add(const Duration(days: 15)),
+      ),
+      Plantao(
+        id: 2,
+        data: DateTime.now().add(const Duration(days: 1)),
+      ),
+      Plantao(
+        id: 2,
+        data: DateTime.now().add(const Duration(days: 2)),
+      ),
+      Plantao(
+        id: 2,
+        data: DateTime.now().add(const Duration(days: -15)),
+      ),
+      Plantao(
+        id: 2,
+        data: DateTime.now().add(const Duration(days: 15)),
+      ),
+      Plantao(
+        id: 2,
+        data: DateTime.now().add(const Duration(days: 1)),
+      ),
+      Plantao(
+        id: 2,
+        data: DateTime.now().add(const Duration(days: 1)),
+      ),
+      Plantao(
+        id: 2,
+        data: DateTime.now().add(const Duration(days: 2)),
+      ),
+      Plantao(
+        id: 2,
+        data: DateTime.now().add(const Duration(days: -15)),
+      ),
+      Plantao(
+        id: 2,
+        data: DateTime.now().add(const Duration(days: 15)),
+      ),
+      Plantao(
+        id: 2,
+        data: DateTime.now().add(const Duration(days: 1)),
+      ),
+      Plantao(
+        id: 1,
+        data: DateTime.now().add(const Duration(days: 5)),
+      ),
+      Plantao(
+        id: 2,
+        data: DateTime.now(),
+      ),
+      Plantao(
+        id: 2,
+        data: DateTime.now().add(const Duration(days: -20)),
+      ),
+      Plantao(
+        id: 2,
+        data: DateTime.now().add(const Duration(days: 2)),
+      ),
+      Plantao(
+        id: 2,
+        data: DateTime.now().add(const Duration(days: -15)),
+      ),
+      Plantao(
+        id: 2,
+        data: DateTime.now().add(const Duration(days: 15)),
+      ),
+      Plantao(
+        id: 2,
+        data: DateTime.now().add(const Duration(days: 1)),
+      ),
+      Plantao(
+        id: 2,
+        data: DateTime.now().add(const Duration(days: 2)),
+      ),
     ];
 
     return DefaultTabController(
@@ -53,11 +137,11 @@ class TabsScreen extends StatelessWidget {
             indicatorColor: Theme.of(context).colorScheme.secondary,
             tabs: const [
               Tab(
-                icon: Icon(Icons.access_alarm),
+                icon: Icon(Icons.alarm_add),
                 text: "Previstos",
               ),
               Tab(
-                icon: Icon(Icons.remove_circle_sharp),
+                icon: Icon(Icons.check_box),
                 text: "Realizados",
               ),
             ],
@@ -71,6 +155,24 @@ class TabsScreen extends StatelessWidget {
             PlantaoPrevistoScreen(plantoes: plantoes),
             PlantaoRealizadoScreen(plantoes: plantoes)
           ],
+        ),
+        bottomNavigationBar: Container(
+          height: 60,
+          color: Colors.black12,
+          child: InkWell(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: Column(
+                children: <Widget>[
+                  Icon(
+                    Icons.alarm,
+                    color: Theme.of(context).accentColor,
+                  ),
+                  const Text('Ministério Público do Estado do Pará'),
+                ],
+              ),
+            ),
+          ),
         ),
       ),
     );

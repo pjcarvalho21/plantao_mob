@@ -15,7 +15,7 @@ class PlantaoListRealizados extends StatelessWidget {
       return plt.data.isBefore(DateTime.now());
     });
     return SizedBox(
-      height: 600,
+      height: 750,
       child: plantoesRealizados.isEmpty
           ? Column()
           : ListView.builder(
@@ -29,16 +29,28 @@ class PlantaoListRealizados extends StatelessWidget {
                     horizontal: 5,
                   ),
                   child: ListTile(
-                    leading: const CircleAvatar(
-                      backgroundColor: Color.fromARGB(255, 129, 126, 126),
-                      radius: 30,
-                      child: Padding(
-                        padding: EdgeInsets.all(6),
-                        child: FittedBox(
-                          child: Text(
-                            'RLZ',
-                            style: TextStyle(
-                              color: Colors.white,
+                    leading: PhysicalModel(
+                      color: Colors.black,
+                      elevation: 12,
+                      shape: BoxShape.circle,
+                      child: CircleAvatar(
+                        backgroundColor: const Color.fromARGB(255, 20, 121, 10),
+                        radius: 25,
+                        child: CircleAvatar(
+                          backgroundColor:
+                              const Color.fromARGB(255, 36, 141, 15),
+                          radius: 22,
+                          child: Padding(
+                            padding: const EdgeInsets.all(6),
+                            child: FittedBox(
+                              child: Column(
+                                children: const [
+                                  Icon(
+                                    Icons.check,
+                                    color: Colors.white,
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                         ),
