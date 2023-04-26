@@ -4,7 +4,6 @@ import 'package:intl/intl.dart';
 
 class PlantaoListPrevistos extends StatelessWidget {
   final List<Plantao> plantoes;
-
   const PlantaoListPrevistos({super.key, required this.plantoes});
 
   @override
@@ -14,6 +13,7 @@ class PlantaoListPrevistos extends StatelessWidget {
     plantoesPrevistos.retainWhere((plt) {
       return plt.data.isAfter(DateTime.now());
     });
+
     return SizedBox(
       height: 600,
       child: plantoesPrevistos.isEmpty

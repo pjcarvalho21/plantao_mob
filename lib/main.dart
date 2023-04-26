@@ -11,7 +11,7 @@ class PlantaoApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-       theme: tema.copyWith(
+      theme: tema.copyWith(
         colorScheme: tema.colorScheme.copyWith(
           primary: const Color.fromARGB(255, 10, 60, 100),
           secondary: const Color.fromARGB(255, 65, 63, 59),
@@ -42,9 +42,8 @@ class PlantaoApp extends StatelessWidget {
       ],
       supportedLocales: const [Locale('pt', 'BR')],
       routes: {
-        AppRoutes.home:(context) => const TabsScreen(),
-        },
+        AppRoutes.home: (context) => const TabsScreen(),
+      },
     );
   }
 }
-
