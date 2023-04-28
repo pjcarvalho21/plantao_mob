@@ -1,131 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:plantao_mob/model/plantao_list.dart';
 import 'package:plantao_mob/model/plantonista.dart';
+import 'package:provider/provider.dart';
 import 'plantao_previsto_screan.dart';
 import 'plantao_realizado_screen.dart';
 import '../model/plantao.dart';
 import 'package:plantao_mob/components/main_drawer.dart';
 
-class TabsScreen extends StatelessWidget {
+class TabsScreen extends StatefulWidget {
   const TabsScreen({super.key});
+
+  @override
+  State<TabsScreen> createState() => _TabsScreenState();
+}
+
+class _TabsScreenState extends State<TabsScreen> {
+  @override
+  void initState() {
+    super.initState();
+    Provider.of<PlantaoList>(context, listen: false).loadPlantoes();
+  }
 
   @override
   Widget build(BuildContext context) {
     Plantonista plantonista =
         Plantonista(1, 'DAP', 'Paulo J. Carvalho', 'Servidor');
-    List<Plantao> plantoes = [
-      Plantao(
-        id: 1,
-        data: DateTime.now().add(const Duration(days: 5)),
-      ),
-      Plantao(
-        id: 2,
-        data: DateTime.now(),
-      ),
-      Plantao(
-        id: 2,
-        data: DateTime.now().add(const Duration(days: -20)),
-      ),
-      Plantao(
-        id: 2,
-        data: DateTime.now().add(const Duration(days: 2)),
-      ),
-      Plantao(
-        id: 2,
-        data: DateTime.now().add(const Duration(days: -15)),
-      ),
-      Plantao(
-        id: 2,
-        data: DateTime.now().add(const Duration(days: 15)),
-      ),
-      Plantao(
-        id: 2,
-        data: DateTime.now().add(const Duration(days: 1)),
-      ),
-      Plantao(
-        id: 2,
-        data: DateTime.now().add(const Duration(days: 2)),
-      ),
-      Plantao(
-        id: 2,
-        data: DateTime.now().add(const Duration(days: -15)),
-      ),
-      Plantao(
-        id: 2,
-        data: DateTime.now().add(const Duration(days: 15)),
-      ),
-      Plantao(
-        id: 2,
-        data: DateTime.now().add(const Duration(days: 1)),
-      ),
-      Plantao(
-        id: 2,
-        data: DateTime.now().add(const Duration(days: 2)),
-      ),
-      Plantao(
-        id: 2,
-        data: DateTime.now().add(const Duration(days: -15)),
-      ),
-      Plantao(
-        id: 2,
-        data: DateTime.now().add(const Duration(days: 15)),
-      ),
-      Plantao(
-        id: 2,
-        data: DateTime.now().add(const Duration(days: 1)),
-      ),
-      Plantao(
-        id: 2,
-        data: DateTime.now().add(const Duration(days: 1)),
-      ),
-      Plantao(
-        id: 2,
-        data: DateTime.now().add(const Duration(days: 2)),
-      ),
-      Plantao(
-        id: 2,
-        data: DateTime.now().add(const Duration(days: -15)),
-      ),
-      Plantao(
-        id: 2,
-        data: DateTime.now().add(const Duration(days: 15)),
-      ),
-      Plantao(
-        id: 2,
-        data: DateTime.now().add(const Duration(days: 1)),
-      ),
-      Plantao(
-        id: 1,
-        data: DateTime.now().add(const Duration(days: 5)),
-      ),
-      Plantao(
-        id: 2,
-        data: DateTime.now(),
-      ),
-      Plantao(
-        id: 2,
-        data: DateTime.now().add(const Duration(days: -20)),
-      ),
-      Plantao(
-        id: 2,
-        data: DateTime.now().add(const Duration(days: 2)),
-      ),
-      Plantao(
-        id: 2,
-        data: DateTime.now().add(const Duration(days: -15)),
-      ),
-      Plantao(
-        id: 2,
-        data: DateTime.now().add(const Duration(days: 15)),
-      ),
-      Plantao(
-        id: 2,
-        data: DateTime.now().add(const Duration(days: 1)),
-      ),
-      Plantao(
-        id: 2,
-        data: DateTime.now().add(const Duration(days: 2)),
-      ),
-    ];
+    final provider = Provider.of<PlantaoList>(context);
+    List<Plantao> carregarPlantoes = provider.items;
 
     return DefaultTabController(
       length: 2,
@@ -152,8 +53,8 @@ class TabsScreen extends StatelessWidget {
         ),
         body: TabBarView(
           children: [
-            PlantaoPrevistoScreen(plantoes: plantoes),
-            PlantaoRealizadoScreen(plantoes: plantoes)
+            PlantaoPrevistoScreen(plantoes: carregarPlantoes),
+            PlantaoRealizadoScreen(plantoes: carregarPlantoes)
           ],
         ),
         bottomNavigationBar: Container(
