@@ -1,5 +1,5 @@
 class Plantao {
-  final int id;
+  final String id;
   final DateTime data;
   Plantao({
     required this.id,
