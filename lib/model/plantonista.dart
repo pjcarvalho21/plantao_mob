@@ -7,5 +7,5 @@ class Plantonista {
   final String local;
   final String tipoPlantonista;
 
-  Plantonista(this.id, this.local, this.nome, this.tipoPlantonista);
+  Plantonista(this.id, this.nome, this.local, this.tipoPlantonista);
 }

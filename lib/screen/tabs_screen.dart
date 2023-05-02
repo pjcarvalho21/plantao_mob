@@ -23,10 +23,10 @@ class _TabsScreenState extends State<TabsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Plantonista plantonista =
-        Plantonista(1, 'DAP', 'Paulo J. Carvalho', 'Servidor');
     final provider = Provider.of<PlantaoList>(context);
     List<Plantao> carregarPlantoes = provider.items;
+    Plantonista plantonista = Plantonista(1, carregarPlantoes[0].nome,
+        carregarPlantoes[0].local, carregarPlantoes[0].tipoPlantonista);
 
     return DefaultTabController(
       length: 2,
