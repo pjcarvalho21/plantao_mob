@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:plantao_mob/model/plantao_list.dart';
+import 'package:plantao_mob/pages/auth_page.dart';
 import 'package:provider/provider.dart';
 import 'utils/app_routes.dart';
 import 'screen/tabs_screen.dart';
+import 'model/auth.dart';
 
 main() => runApp(PlantaoApp());
 
@@ -12,8 +14,15 @@ class PlantaoApp extends StatelessWidget {
   final ThemeData tema = ThemeData();
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => PlantaoList(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => PlantaoList(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => Auth(),
+        ),
+      ],
       child: MaterialApp(
         theme: tema.copyWith(
           colorScheme: tema.colorScheme.copyWith(
@@ -46,7 +55,8 @@ class PlantaoApp extends StatelessWidget {
         ],
         supportedLocales: const [Locale('pt', 'BR')],
         routes: {
-          AppRoutes.home: (context) => const TabsScreen(),
+          AppRoutes.AUTH: (context) => const AuthPage(),
+          AppRoutes.HOME: (context) => const TabsScreen(),
         },
         debugShowCheckedModeBanner: false,
       ),
