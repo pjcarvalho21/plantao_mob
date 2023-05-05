@@ -1,5 +1,6 @@
+import 'package:plantao_mob/model/plantonista.dart';
+
 class AppRoutes {
-  static const HOME = '/home';
   static const AUTH = '/';
-  static const plantaoLista = '/plantao-lista';
+  static const PLANTONISTA = '/plantao-lista';
 }

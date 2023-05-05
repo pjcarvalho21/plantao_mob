@@ -15,6 +15,7 @@ class TabsScreen extends StatefulWidget {
 }
 
 class _TabsScreenState extends State<TabsScreen> {
+  Plantonista plantonista = new Plantonista("", "", "");
   @override
   void initState() {
     super.initState();
@@ -25,8 +26,10 @@ class _TabsScreenState extends State<TabsScreen> {
   Widget build(BuildContext context) {
     final provider = Provider.of<PlantaoList>(context);
     List<Plantao> carregarPlantoes = provider.items;
-    Plantonista plantonista = Plantonista(1, carregarPlantoes[0].nome,
-        carregarPlantoes[0].local, carregarPlantoes[0].tipoPlantonista);
+    if (carregarPlantoes.isNotEmpty) {
+      plantonista = Plantonista(carregarPlantoes[0].nome,
+          carregarPlantoes[0].local, carregarPlantoes[0].tipoPlantonista);
+    }
 
     return DefaultTabController(
       length: 2,

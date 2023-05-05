@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:plantao_mob/exceptions/auth_exception.dart';
 import 'package:plantao_mob/model/auth.dart';
 import 'package:provider/provider.dart';
 
@@ -10,23 +11,46 @@ class AuthForm extends StatefulWidget {
 }
 
 class _AuthFormState extends State<AuthForm> {
+  Map<String, String> authData = {'login': '', 'password': ''};
+
+  final formkey = GlobalKey<FormState>();
+  bool _isLoading = false;
+
   @override
   Widget build(BuildContext context) {
-    Map<String, String> authData = {'login': '', 'password': ''};
     final deviceSize = MediaQuery.of(context).size;
-    final formkey = GlobalKey<FormState>();
-    bool isLoading = false;
+    void _showErrorDialog(String msg) {
+      showDialog(
+          context: context,
+          builder: (ctx) => AlertDialog(
+                title: const Text('Ocorreu um erro'),
+                content: Text(msg),
+                actions: [
+                  TextButton(
+                      onPressed: () => Navigator.of(context).pop(),
+                      child: const Text('Fechar'))
+                ],
+              ));
+    }
 
     Future<void> submit() async {
       final isValid = formkey.currentState?.validate() ?? false;
       if (!isValid) {
         return;
       }
-      setState(() => isLoading = true);
+      setState(() => _isLoading = true);
       formkey.currentState?.save();
       Auth auth = Provider.of(context, listen: false);
-      await auth.login(authData['login']!, authData['password']!);
-      setState(() => isLoading = false);
+
+      try {
+        await auth.login(authData['login']!, authData['password']!);
+      } on AuthException catch (error) {
+        _showErrorDialog(error.toString());
+      } catch (error) {
+        _showErrorDialog('Ocorreu um erro inesperado!');
+      }
+
+      setState(() => _isLoading = false);
     }
 
     return Card(
@@ -69,7 +93,7 @@ class _AuthFormState extends State<AuthForm> {
             const SizedBox(
               height: 20,
             ),
-            if (isLoading)
+            if (_isLoading)
               const CircularProgressIndicator()
             else
               ElevatedButton(

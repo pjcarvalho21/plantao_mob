@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:plantao_mob/model/plantao_list.dart';
-import 'package:plantao_mob/pages/auth_page.dart';
+import 'package:plantao_mob/pages/auth_or_home_page.dart';
+
 import 'package:provider/provider.dart';
 import 'utils/app_routes.dart';
-import 'screen/tabs_screen.dart';
 import 'model/auth.dart';
 
 main() => runApp(PlantaoApp());
@@ -17,10 +17,13 @@ class PlantaoApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (_) => PlantaoList(),
-        ),
-        ChangeNotifierProvider(
           create: (_) => Auth(),
+        ),
+        ChangeNotifierProxyProvider<Auth, PlantaoList>(
+          create: (_) => PlantaoList(""),
+          update: (ctx, auth, previous) {
+            return PlantaoList(auth.usuario ?? '');
+          },
         ),
       ],
       child: MaterialApp(
@@ -55,8 +58,7 @@ class PlantaoApp extends StatelessWidget {
         ],
         supportedLocales: const [Locale('pt', 'BR')],
         routes: {
-          AppRoutes.AUTH: (context) => const AuthPage(),
-          AppRoutes.HOME: (context) => const TabsScreen(),
+          AppRoutes.AUTH: (context) => const AuthOrHomePage(),
         },
         debugShowCheckedModeBanner: false,
       ),

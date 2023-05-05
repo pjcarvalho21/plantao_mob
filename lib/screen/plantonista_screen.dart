@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import '../model/plantonista.dart';
 
@@ -6,33 +8,25 @@ class PlantonistaScreen extends StatelessWidget {
   final Plantonista plantonista;
   @override
   Widget build(BuildContext context) {
-    return Card(
-        elevation: 1,
-        shape: const RoundedRectangleBorder(
-            side: BorderSide(color: Color.fromARGB(255, 204, 201, 201))),
-        margin: const EdgeInsets.symmetric(
-          vertical: 8,
-          horizontal: 5,
-        ),
-        child: Column(
+    return Padding(
+      padding: const EdgeInsets.all(1.0),
+      child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            ListTile(
-              title: Text(
-                plantonista.nome,
-                style: Theme.of(context).textTheme.headline6,
-              ),
-              subtitle: Text("Local: ${plantonista.local}"),
+            Text(
+              plantonista.nome,
+              style: Theme.of(context).textTheme.bodyLarge,
             ),
-            Row(
-              children: [
-                Text(
-                  "    ${plantonista.tipoPlantonista} MPPA",
-                  style: const TextStyle(
-                      color: Color.fromARGB(255, 141, 140, 140)),
-                ),
-              ],
-            )
-          ],
-        ));
+            Text(
+              plantonista.local,
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
+            Text(
+              plantonista.tipoPlantonista,
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
+          ]),
+    );
   }
 }
