@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:plantao_mob/model/plantao_list.dart';
 import 'package:plantao_mob/pages/auth_or_home_page.dart';
-
 import 'package:provider/provider.dart';
 import 'utils/app_routes.dart';
 import 'model/auth.dart';

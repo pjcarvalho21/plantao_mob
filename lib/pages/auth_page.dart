@@ -11,8 +11,8 @@ class AuthPage extends StatelessWidget {
         Container(
           decoration: const BoxDecoration(
             gradient: LinearGradient(colors: [
-              Color.fromRGBO(18, 26, 129, 0.89),
-              Color.fromRGBO(9, 48, 80, 0.494),
+              Color.fromARGB(255, 14, 98, 172),
+              Color.fromRGBO(11, 80, 114, 0.482),
             ], begin: Alignment.topLeft, end: Alignment.bottomRight),
           ),
         ),
@@ -40,7 +40,7 @@ class AuthPage extends StatelessWidget {
                   ],
                 ),
                 child: Text(
-                  'Meus Plantões MPPA',
+                  '     Meus Plantões     ',
                   style: TextStyle(
                       fontSize: 30,
                       fontFamily: 'Anton',
@@ -48,7 +48,8 @@ class AuthPage extends StatelessWidget {
                           Theme.of(context).accentTextTheme.headline6?.color),
                 ),
               ),
-              AuthForm(),
+              const AuthForm(),
+              Image.asset("assets/images/logo_mppa.png"),
             ],
           ),
         ),

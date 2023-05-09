@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:plantao_mob/model/plantonista.dart';
 import 'package:plantao_mob/screen/plantonista_screen.dart';
 import 'package:provider/provider.dart';
-
 import '../model/auth.dart';
 import '../utils/app_routes.dart';
 

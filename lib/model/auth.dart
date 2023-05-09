@@ -1,5 +1,5 @@
+import 'dart:async';
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:plantao_mob/exceptions/auth_exception.dart';
@@ -7,10 +7,10 @@ import 'package:plantao_mob/exceptions/auth_exception.dart';
 class Auth with ChangeNotifier {
   static const _url = 'https://www2.mppa.mp.br/ssomppa-api/oauth/token';
   String? _token;
-  String? _refresh_token;
   String? _login;
   DateTime? _expiryDate;
   String? usuario;
+  Timer? logoutTimer;
 
   bool get isAuth {
     final isValid = _expiryDate?.isAfter(DateTime.now()) ?? false;
@@ -23,10 +23,6 @@ class Auth with ChangeNotifier {
 
   String? get logining {
     return isAuth ? _login : null;
-  }
-
-  String? get refreshToken {
-    return isAuth ? _refresh_token : null;
   }
 
   Future<void> _authenticate(String login, String password) async {
@@ -45,8 +41,6 @@ class Auth with ChangeNotifier {
     final response =
         await http.post(Uri.parse(_url), headers: header, body: params);
 
-    //print("Response Status: ${response.statusCode}");
-    print("Response body:${response.body}");
     final body = jsonDecode(response.body);
 
     String _decodeBase64(String str) {
@@ -88,13 +82,14 @@ class Auth with ChangeNotifier {
     } else {
       _token = body['access_token'];
       Map<String, dynamic> decodedToken = parseJwt(_token!);
+
+      DateTime tsdate =
+          DateTime.fromMillisecondsSinceEpoch(decodedToken['exp'] * 1000);
       usuario = decodedToken['sub']['name'];
-      _refresh_token = body['refresh_token'];
       _expiryDate = DateTime.now().add(
-        Duration(
-          seconds: int.parse('12587'),
-        ),
+        Duration(seconds: decodedToken['exp'] * 1000),
       );
+      autoLogout();
       notifyListeners();
     }
   }
@@ -105,10 +100,24 @@ class Auth with ChangeNotifier {
 
   void logout() {
     _token = null;
-    _refresh_token = null;
     _login = null;
     _expiryDate = null;
     usuario = null;
+    clearLogoutTimer();
     notifyListeners();
+  }
+
+  void clearLogoutTimer() {
+    logoutTimer?.cancel();
+    logoutTimer = null;
+  }
+
+  void autoLogout() {
+    clearLogoutTimer();
+    final timeToLogout = _expiryDate?.difference(DateTime.now()).inSeconds;
+    logoutTimer = Timer(
+      Duration(seconds: timeToLogout ?? 0),
+      logout,
+    );
   }
 }

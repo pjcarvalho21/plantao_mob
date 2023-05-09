@@ -10,14 +10,14 @@ class PlantaoList with ChangeNotifier {
 
   final List<Plantao> _items = [];
   List<Plantao> get items => [..._items]; //clone dos itens
-  String? _usuario;
+  String? usuario;
 
-  PlantaoList(this._usuario);
+  PlantaoList(this.usuario);
 
   Future<void> loadPlantoes() async {
     String url =
-        "https://www2.mppa.mp.br/plantao-api/api/v1/listaplantao/consulta?token=d2ViQXBwLjUwOGE1NTUubXBwYS5tcC5icjo3QkZDNjdBNUUzQjU3MzZEQTgxNzdGODc1NDMzQg&page=0&size=10&grupo=GERAL&nome=${_usuario}";
-    //print(_usuario);
+        "https://www2.mppa.mp.br/plantao-api/api/v1/listaplantao/consulta?token=d2ViQXBwLjUwOGE1NTUubXBwYS5tcC5icjo3QkZDNjdBNUUzQjU3MzZEQTgxNzdGODc1NDMzQg&page=0&size=10&grupo=GERAL&nome=${usuario}";
+
     final response = await http.get(Uri.parse(url));
     Map<String, dynamic> data = jsonDecode(response.body);
     for (var element in data['content']) {

@@ -15,11 +15,15 @@ class TabsScreen extends StatefulWidget {
 }
 
 class _TabsScreenState extends State<TabsScreen> {
+  bool isLoading = false;
   Plantonista plantonista = new Plantonista("", "", "");
   @override
   void initState() {
+    setState(() => isLoading = true);
     super.initState();
+
     Provider.of<PlantaoList>(context, listen: false).loadPlantoes();
+    setState(() => isLoading = false);
   }
 
   @override
@@ -56,7 +60,10 @@ class _TabsScreenState extends State<TabsScreen> {
         ),
         body: TabBarView(
           children: [
-            PlantaoPrevistoScreen(plantoes: carregarPlantoes),
+            if (isLoading)
+              const CircularProgressIndicator()
+            else
+              PlantaoPrevistoScreen(plantoes: carregarPlantoes),
             PlantaoRealizadoScreen(plantoes: carregarPlantoes)
           ],
         ),
@@ -68,11 +75,11 @@ class _TabsScreenState extends State<TabsScreen> {
               padding: const EdgeInsets.only(top: 8.0),
               child: Column(
                 children: <Widget>[
-                  Icon(
-                    Icons.alarm,
-                    color: Theme.of(context).accentColor,
+                  Image.asset(
+                    'assets/images/logo_mppa.png',
+                    height: 50,
+                    width: 100,
                   ),
-                  const Text('Ministério Público do Estado do Pará'),
                 ],
               ),
             ),
