@@ -1,4 +1,4 @@
-package com.example.plantao_mob
+package br.mp.mppa.plantao_mob
 
 import io.flutter.embedding.android.FlutterActivity
 
