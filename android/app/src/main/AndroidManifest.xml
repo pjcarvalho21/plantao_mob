@@ -2,7 +2,7 @@
     package="br.mp.mppa.plantao_mob">
 <uses-permission android:name="android.permission.INTERNET"/>
    <application
-        android:label="PltAum"
+        android:label="Plantum"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

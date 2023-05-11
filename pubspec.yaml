@@ -41,10 +41,17 @@ dependencies:
   intl: ^0.17.0
   http: ^0.13.5
 
+flutter_native_splash:
+  color: "#E8E9ED"
+  image: "dev_assets/plantao.png"
+  android: true
+  ios: true
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_launcher_icons: ^0.10.0
+  flutter_native_splash: any
 
 flutter_icons:
   android: true
