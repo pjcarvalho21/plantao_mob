@@ -42,10 +42,10 @@ class AuthPage extends StatelessWidget {
                 child: Text(
                   '     Meus Plantões     ',
                   style: TextStyle(
-                      fontSize: 30,
-                      fontFamily: 'Anton',
-                      color:
-                          Theme.of(context).accentTextTheme.headline6?.color),
+                    fontSize: 30,
+                    fontFamily: 'Anton',
+                    color: Color.fromARGB(255, 39, 101, 133),
+                  ),
                 ),
               ),
               const AuthForm(),
