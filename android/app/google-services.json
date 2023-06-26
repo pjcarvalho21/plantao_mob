@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "381774074557",
+    "firebase_url": "https://plantaoapp-b6dcf-default-rtdb.firebaseio.com",
+    "project_id": "plantaoapp-b6dcf",
+    "storage_bucket": "plantaoapp-b6dcf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:381774074557:android:2c086be0051e70de009dd4",
+        "android_client_info": {
+          "package_name": "br.mp.mppa.plantao_mob"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "381774074557-ioc3n58mcupsmd1ec0de4tuh7fostmih.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5lIQrbj-g-dgTReboOmbsnBDS3UlF3VU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "381774074557-ioc3n58mcupsmd1ec0de4tuh7fostmih.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
